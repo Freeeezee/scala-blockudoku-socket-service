@@ -8,8 +8,12 @@ export class SocketService {
 
     private io: Server | null = null;
 
-    public init(server: HttpServer) {
-        this.io = new Server(server);
+    public init(server: HttpServer, clientUrl?: string) {
+        this.io = new Server(server, {
+            cors: {
+                origin: clientUrl
+            }
+        });
 
         initializeSocketServer(this.io);
     }

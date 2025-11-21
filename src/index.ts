@@ -12,6 +12,7 @@ const server = createServer(app);
 dotenv.config();
 const port = process.env.PORT || 3000;
 const apiUrl = process.env.API_URL;
+const clientUrl = process.env.CLIENT_URL;
 
 app.use(express.json());
 app.use(
@@ -25,7 +26,7 @@ app.use(
 
 app.use('/game', gameRoute);
 
-SocketService.getInstance().init(server);
+SocketService.getInstance().init(server, clientUrl);
 
 server.listen(port, () => {
     console.log(`Socket service listening on port ${port}`)
