@@ -11,7 +11,9 @@ export class SocketService {
     public init(server: HttpServer, clientUrl?: string) {
         this.io = new Server(server, {
             cors: {
-                origin: clientUrl
+                origin: clientUrl,
+                allowedHeaders: "*",
+                credentials: true
             }
         });
 
